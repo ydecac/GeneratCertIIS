@@ -61,6 +61,7 @@ Complete-ACMEChallenge -IdentifierRef $Alias2 -ChallengeType http-01 -Handler ii
 
 Submit-ACMEChallenge -IdentifierRef $Alias -ChallengeType http-01 -Force
 Submit-ACMEChallenge -IdentifierRef $Alias2 -ChallengeType http-01 -Force
+
 Write-Host -ForegroundColor green 'attente de validation'
 sleep -s 60
 
@@ -78,15 +79,20 @@ Update-ACMECertificate -CertificateRef $CertRef
 j'ai ajouter un remove du binding pour qu'il n'y est pas de conflit et que ce script puisse etre joué plusieurs fois
 
 Get-ACMEInstallerProfile -ListInstallers
+
 Write-Host -ForegroundColor green 'Installation du certificat sur le site :'$website
+
 Get-WebBinding -Port 443 -HostHeader $DNS | Remove-WebBinding
+
 Install-ACMECertificate -CertificateRef $CertRef -Installer iis -InstallerParameters @{
   WebSiteRef = $website
   BindingHost = $DNS
   BindingPort = 443
   CertificateFriendlyName = $CertRef
 }
+
 Get-WebBinding -Port 443 -HostHeader $DNS2 | Remove-WebBinding
+
 Install-ACMECertificate -CertificateRef $CertRef -Installer iis -InstallerParameters @{
   WebSiteRef = $website
   BindingHost = $DNS2
@@ -100,4 +106,5 @@ Get-ACMECertificate $CertRef -ExportKeyPEM "$ExportPath.key.pem"
 
 
 Get-ACMECertificate $CertRef -ExportPkcs12 "$ExportPath.pfx" -CertificatePassword $pass
+
 Write-Host -ForegroundColor green 'Certificat exporter dans'$ExportPath
