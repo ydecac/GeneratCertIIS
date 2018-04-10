@@ -1,8 +1,8 @@
 # GeneratCertIIS
 ## Generation d'un certificat de site web a l'aide de Powershell pour serveur IIS
 
-Ce Script a pour but de creer un certificat valide sur la plupart des navigateurs de facon gratuite depuis Let's Encript
-
+Ce Script a pour but de creer un certificat valide sur la plupart des navigateurs de façon gratuite depuis Let's Encript
+Il peut etre automatisé avec un Task Sheduler
 
 ### Parti variable
 C'est la premiere partie du script il faut ici remplacer les ... par les valeurs de votre site:
@@ -44,10 +44,10 @@ if ((Get-ACMEVault) -eq $null)
 		Initialize-ACMEVault
 }
 
-### création du compte chez Let's Encrypt user@entreprise.com
+### Création du compte chez Let's Encrypt user@entreprise.com
 New-ACMERegistration -Contacts mailto:$email -AcceptTos
 
-### validation des ellements du certificat
+### Validation des ellements du certificat
 
 Get-ACMEChallengeHandlerProfile -ListChallengeHandlers 
 
@@ -57,7 +57,7 @@ New-ACMEIdentifier -Dns $DNS2 -Alias $Alias2
 Complete-ACMEChallenge -IdentifierRef $Alias -ChallengeType http-01 -Handler iis -Force -HandlerParameters @{ WebSiteRef = $Website }
 Complete-ACMEChallenge -IdentifierRef $Alias2 -ChallengeType http-01 -Handler iis -Force -HandlerParameters @{ WebSiteRef = $Website }
 
-### envoie a Let's Encript
+### Envoie a Let's Encript
 
 Submit-ACMEChallenge -IdentifierRef $Alias -ChallengeType http-01 -Force
 Submit-ACMEChallenge -IdentifierRef $Alias2 -ChallengeType http-01 -Force
