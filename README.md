@@ -8,22 +8,32 @@ Il peut etre automatisé avec un Task Sheduler
 C'est la premiere partie du script il faut ici remplacer les ... par les valeurs de votre site:
 
 $random = Get-Random -Maximum 1000 #ajout d'un random pour lancer le renouvellement du certificat avant son expiration
+
 Write-Host -ForegroundColor green $random
 
 $email = "..." #email de contact
+
 $CertRef = "...$random" #nom donné au certificat (alias)
+
 $DNS = "..." #adresse DNS du site
+
 $DNS2 = "..." #2eme adresse DNS du site (www. ... .fr)
+
 $Alias = "...$random" #Alias certificat
+
 $Alias2 = "...$random" #Alias certificat
+
 $Website = "..." #nom du site dans iis
+
 $ExportPath = "c:\cert\$CertRef" #emplacement export PFX
+
 $Pass = "..." #Mot de pass PFX
 
 ### Partie dependances
 Il faut ajouter a powershell les dependances dont il a besoin en commancant par les installer puis en les important
 
 Install-Module -Name ACMESharp -AllowClobber
+
 Install-Module -Name ACMESharp.Providers.IIS
 
 Import-Module ACMESharp
