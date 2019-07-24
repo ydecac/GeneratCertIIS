@@ -1,0 +1,39 @@
+{  
+    "Global": [
+        {
+            "Nom":"--nom du certif--",
+            "email": "--email certif--",
+			"Pass": "--MdP du certif exporté--"
+        }
+    ],
+    "Sites": [
+        {
+            "Nom": "--nom site IIS--",
+            "Alias": [
+                "--DNS1--",
+                "--DNS2--"
+            ]
+        },
+        {
+            "Nom": "--nom site IIS 2--",
+            "Alias": [
+                "--DNS1--",
+                "--DNS2--"
+            ]
+        },
+		{
+            "Nom": "--nom site IIS 3--",
+            "Alias": [
+                "--DNS1--",
+                "--DNS2--"
+            ]
+        },
+		{
+            "Nom": "--nom site IIS 4--",
+            "Alias": [
+                "--DNS1--",
+                "--DNS2--"
+            ]
+        }
+    ]
+ }
